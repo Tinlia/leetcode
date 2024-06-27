@@ -1,16 +1,16 @@
-# Runtime: 645ms | Beats 83.80% of submissions
-class Solution:
-    def findCenter(self, edges: List[List[int]]) -> int:
-        # Find and return the number that exists in every pair
-        used = []
-        def check(n):
-            for pair in edges:
-                if n not in pair: return False
-            return True
+# Runtime: 575ms | Beats 98.08% of submissions
+# Time complexity: O(1)
+class Solution(object):
+    def findCenter(self, edges):
+        """
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        if edges[0][0] in edges[1]:
+            return edges[0][0]
+        elif edges[0][1] in edges[1]:
+            return edges[0][1]
 
-        for pair in edges:
-            for n in pair:
-                if n not in used:
-                    if not check(n): used.append(n)
-                    else: return n
-        return None
+# If there exists a common point in every pairing of edges, it must exist in the first two edge pairs. 
+# Additionally, since the graph is a star, there should only be one point that is visited more than once. 
+# Since that point must exist in the first two pairs, simply finding the node that occurs in both of the first two pairs will return the center.
